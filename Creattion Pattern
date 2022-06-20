@@ -1,0 +1,73 @@
+<?php
+//Подумайте и реализуйте паттерн для системы оплаты так,
+// чтобы можно было в любой момент добавить новую систему оплаты.
+interface Pay
+{
+    public function getAmount();
+}
+abstract  class PayMethod
+{
+    abstract public function newPay():Pay;
+    public function total()
+    {
+        $pay = $this ->newPay();
+        return $pay->getAmount();
+    }
+}
+class ApplePay implements Pay
+{
+    private int $amount;
+    public function __construct($amount)
+    {
+        $this->amount=$amount;
+    }
+    public function getAmount():int
+    {
+        return $this->amount;
+    }
+}
+class GooglePay implements Pay
+{
+    private int $amount;
+    public function __construct($amount)
+    {
+        $this->amount=$amount;
+    }
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+}
+class ApplePayMethod extends PayMethod
+{
+    private int $amount;
+    public function __construct($amount)
+    {
+        $this->amount = $amount;
+    }
+    public function newPay():Pay
+    {
+        return new ApplePay($this->amount);
+    }
+}
+class GooglePayMethod extends PayMethod
+{
+    private int $amount;
+    public function __construct($amount)
+    {
+        $this->amount = $amount;
+    }
+    public function newPay():Pay
+    {
+        return new ApplePAy($this->amount);
+    }
+}
+
+$pay = new ApplePayMethod(150);
+echo '<br>';
+echo $pay->total();
+echo '<br>';
+$pay= new GooglePayMethod(250);
+echo '<br>';
+echo$pay->total();
+echo '<br>';
