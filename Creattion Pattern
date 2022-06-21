@@ -59,7 +59,7 @@ class GooglePayMethod extends PayMethod
     }
     public function newPay():Pay
     {
-        return new GooglePAy($this->amount);
+        return new GooglePay($this->amount);
     }
 }
 
