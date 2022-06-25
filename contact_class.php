@@ -1,26 +1,31 @@
 <?php
+
 class Contacts
 {
-
 }
 interface NewContact
 {
-    public function name($value):NewContact;
-     public function surname($value):NewContact;
-      public function phone($value):NewContact;
-       public function email($value):NewContact;
-        public function adress($value):NewContact;
+    public function name($value): NewContact;
+    public function surname($value): NewContact;
+    public function phone($value): NewContact;
+    public function email($value): NewContact;
+    public function address($value): NewContact;
 }
-class Contact implements NEwContact
+class Contact implements NewContact
 {
     private $contact;
-    public function _construct()
+    public function __construct()
     {
         $this->reset();
     }
-    public function reset():NewContact
+    public function reset(): NewContact
     {
-        $this->contact=new Contacts();
+        $this->contact = new Contacts();
+        return $this;
+    }
+    public function phone($value): NewContact
+    {
+        $this->contact->phone = $value;
         return $this;
     }
     public function name($value): NewContact
@@ -38,37 +43,34 @@ class Contact implements NEwContact
         $this->contact->email = $value;
         return $this;
     }
-    public function adress($value): NewContact
+    public function address($value): NewContact
     {
         $this->contact->address = $value;
         return $this;
     }
-    public function phone($value): NewContact
-    {
-        $this->contact->phone = $value;
-        return $this;
-    }
     public function build(): Contacts
     {
-        $build - $this->contact;
+        $build = $this->contact;
         $this->reset();
         return $build;
     }
 }
-$contact = new Contact ();
-$newContact = $contact->phone('015-523-568')
+
+$contact = new Contact();
+$newContact = $contact->phone('000-555-000')
     ->name("John")
     ->surname("Smit")
-    ->email("JohnSmit@email.com")
-    ->adress("Str.Left")
+    ->email("johnsmit@email.com")
+    ->address("Str_My")
     ->build();
 
-$newContact2 = $contact->phone('056-649-256')
-    ->name("Frensis")
-    ->surname("Jackson")
+$newContact2 = $contact->phone('000-777-000')
+    ->name("Frank")
+    ->surname("French")
     ->email("frank@email.com")
-    ->adress("Str.Manheten")
+    ->address("Str_Manhaten")
     ->build();
+
 echo '<pre>';
 print_r($newContact);
 print_r($newContact2);
