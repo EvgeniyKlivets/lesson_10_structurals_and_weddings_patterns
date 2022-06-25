@@ -38,7 +38,7 @@ class Contact implements NEwContact
         $this->contact->email = $value;
         return $this;
     }
-    public function address($value): NewContact
+    public function adress($value): NewContact
     {
         $this->contact->address = $value;
         return $this;
@@ -60,14 +60,14 @@ $newContact = $contact->phone('015-523-568')
     ->name("John")
     ->surname("Smit")
     ->email("JohnSmit@email.com")
-    ->address("Str.Left")
+    ->adress("Str.Left")
     ->build();
 
 $newContact2 = $contact->phone('056-649-256')
     ->name("Frensis")
     ->surname("Jackson")
     ->email("frank@email.com")
-    ->address("Str.Manheten")
+    ->adress("Str.Manheten")
     ->build();
 echo '<pre>';
 print_r($newContact);
